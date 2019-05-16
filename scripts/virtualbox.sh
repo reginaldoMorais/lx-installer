@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installVirtualBox() {
   echo "\n\n\n  Install VirtalBox"

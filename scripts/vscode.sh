@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installVsCode() {
   echo "\n\n\n  Install VsCode"

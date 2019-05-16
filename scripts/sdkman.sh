@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installSdkman() {
   echo "\n\n\n  Install Sdkman"
