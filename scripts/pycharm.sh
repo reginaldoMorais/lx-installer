@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installPycharm() {
   echo "\n\n\n  Install PyCharm"

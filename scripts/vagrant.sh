@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installVagrant() {
   echo "\n\n\n  Install Vagrant"

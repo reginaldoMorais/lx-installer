@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installDocker() {
   echo "\n\n\n  Install Docker"

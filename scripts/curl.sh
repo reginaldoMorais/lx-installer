@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installCurl() {
   echo "\n\n\n  Install Curl"

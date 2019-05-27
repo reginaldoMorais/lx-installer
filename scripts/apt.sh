@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 aptGetUpdate() {
   echo "\n\n\n  APT Update"

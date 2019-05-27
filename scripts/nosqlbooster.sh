@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installNoSqlBooster() {
   echo "\n\n\n  Install NoSqlBooster"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installDBeaver() {
   echo "\n\n\n  Install DBeaver"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installFranz() {
   echo "\n\n\n  Install Franz"

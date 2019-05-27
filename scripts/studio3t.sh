@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installStudio3T() {
   echo "\n\n\n  Install Studio 3T"

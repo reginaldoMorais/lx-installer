@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installPostman() {
   echo "\n\n\n  Install Postman"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installGit() {
   echo "\n\n\n  Install Git"

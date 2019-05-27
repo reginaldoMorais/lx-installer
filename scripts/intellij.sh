@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installIntellj() {
   echo "\n\n\n  Install Intellj"

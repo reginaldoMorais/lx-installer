@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 installNVM() {
   echo "\n\n\n  Install NVM"
