@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Script de instalação de aplicativos para Zorin OS
-# Aplicativos: VSCode, DBeaver, MongoDB Compass, Slack, Postman, JetBrains Toolbox, HydraPaper, Google Chrome, Docker, Oh My Zsh, Guake
-# Ambientes de desenvolvimento: NVM, SDKman, Golang, pyenv
+# Script de instalação de aplicativos para Zorin OS ou Ubuntu
+# Configurações: Command Extensions, Fonts, Git Alias, SSL Keys, Vscode Settings, Guake Terminal Settings
+# Aplicativos: VSCode, DBeaver, MongoDB Compass, Slack, Postman, JetBrains Toolbox, HydraPaper, Google Chrome, Docker, Oh My Zsh, Guake Terminal
+# Ambientes de desenvolvimento: NVM e NodeJS, SDKman e Java com Gradle, Golang, pyenv e Python, Mise e Ruby com Rails
 
 # Função para perguntar antes de instalar
 ask_to_install() {
@@ -19,7 +20,7 @@ ask_to_install() {
 }
 
 echo -e "====================================================="
-echo -e "Iniciando instalação de aplicativos para Zorin OS"
+echo -e "Iniciando instalação para Zorin OS ou Ubuntu"
 echo -e "====================================================="
 
 if [ ! -d "/home/reginaldomorais/Workspaces" ]; then
@@ -1095,12 +1096,12 @@ EOL
     echo -e "\nRuby and Rails instalado com sucesso!"
 fi
 
-# Instalação do .command-extension.sh
-if ask_to_install ".command-extension.sh"; then
+# Instalação do .commands-extension.sh
+if ask_to_install ".commands-extension.sh"; then
     echo -e "====================================================="
-    echo -e "Criando .command-extension.sh...\n"
+    echo -e "Criando .commands-extension.sh...\n"
 
-    cat >> ~/.command-extension.sh << 'EOL'
+    cat >> ~/.commands-extension.sh << 'EOL'
 ##############################################################################
 #  FUNCTIONS                                                                 #
 ##############################################################################
@@ -1270,24 +1271,24 @@ eval "$(pyenv virtualenv-init -)"
 EOL
 
 cat >> ~/.bashrc << 'EOL'
-if [ -f ~/.command-extension.sh ]; then
-    echo "Loading ~/.command-extension.sh"
-    source ~/.command-extension.sh
+if [ -f ~/.commands-extension.sh ]; then
+    echo "Loading ~/.commands-extension.sh"
+    source ~/.commands-extension.sh
 fi
 EOL
 
     if [ -f ~/.zshrc ]; then
             cat >> ~/.zshrc << 'EOL'
 
-if [ -f ~/.command-extension.sh ]; then
-    echo "Loading ~/.command-extension.sh"
-    source ~/.command-extension.sh
+if [ -f ~/.commands-extension.sh ]; then
+    echo "Loading ~/.commands-extension.sh"
+    source ~/.commands-extension.sh
 fi
 
 EOL
     fi
 
-    echo -e "\nArquivo .command-extension.sh criado com sucesso!"
+    echo -e "\nArquivo .commands-extension.sh criado com sucesso!"
 fi
 
 echo -e "\n\n====================================================="
