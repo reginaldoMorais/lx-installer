@@ -19,8 +19,43 @@ ask_to_install() {
     fi
 }
 
+# Função para criar atalho customizado
+create_custom_shortcut() {
+    local name="$1"
+    local command="$2"
+    local binding="$3"
+    
+    # Obter lista atual de atalhos customizados
+    local custom_keybindings=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings)
+    
+    # Encontrar próximo slot disponível
+    local index=0
+    while [[ $custom_keybindings == *"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$index/"* ]]; do
+        ((index++))
+    done
+    
+    local path="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$index/"
+    
+    # Configurar o novo atalho
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path name "$name"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path command "$command"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path binding "$binding"
+    
+    # Adicionar à lista de atalhos customizados
+    if [[ $custom_keybindings == "[]" ]] || [[ $custom_keybindings == "@as []" ]]; then
+        gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['$path']"
+    else
+        # Remove os colchetes e adiciona o novo path
+        custom_keybindings=${custom_keybindings%]*}
+        custom_keybindings="${custom_keybindings}, '$path']"
+        gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$custom_keybindings"
+    fi
+    
+    echo -e "Atalho criado: $binding -> $command"
+}
+
 echo -e "====================================================="
-echo -e "Iniciando instalação para Zorin OS ou Ubuntu"
+echo -e "Iniciando instalação de aplicativos para Zorin OS"
 echo -e "====================================================="
 
 if [ ! -d "/home/reginaldomorais/Workspaces" ]; then
@@ -441,6 +476,55 @@ if ask_to_install "Guake com zsh"; then
     echo -e "- Esconder ao perder o foco: $(gsettings get guake.general window-losefocus)"
     echo -e "- Background color em 90%: $(gsettings get guake.style.background transparency)"
     echo -e "\nGuake configurado com sucesso!"
+fi
+
+# Configurar atalho customizado para Guake
+if ask_to_install "atalho customizado Alt+W para Guake"; then
+    echo -e "====================================================="
+    echo -e "Configurando atalho customizado para Guake...\n"
+    
+    # Verificar se já existe um atalho para Guake
+    existing_shortcut=$(gsettings get org.guake.keybindings.global show-hide)
+    echo -e "Atalho atual do Guake: $existing_shortcut"
+    
+    # Criar atalho customizado Alt+W
+    create_custom_shortcut "Guake Terminal" "guake" "<Alt>w"
+    
+    echo -e "\nAtalho configurado com sucesso!"
+    echo -e "Agora você pode usar Alt+W para abrir/fechar o Guake"
+    echo -e "\nObservação: O Guake ainda manterá seu atalho padrão ($existing_shortcut)"
+fi
+
+# Configurar atalho customizado para Guake
+if ask_to_install "atalho customizado Alt+X para xkill"; then
+    echo -e "====================================================="
+    echo -e "Configurando atalho customizado para xkill...\n"
+    
+    # Criar atalho customizado Alt+X
+    create_custom_shortcut "Guake Terminal" "xkill" "<Alt>x"
+    
+    echo -e "\nAtalho configurado com sucesso!"
+    echo -e "Agora você pode usar Alt+X para abrir/fechar o Guake"
+fi
+
+# Configurar atalho para fechar janela como Alt+Q
+if ask_to_install "atalho Alt+Q para fechar janela"; then
+    echo -e "====================================================="
+    echo -e "Configurando atalho Alt+Q para fechar janela...\n"
+    
+    # Verificar atalho atual
+    current_shortcut=$(gsettings get org.gnome.desktop.wm.keybindings close)
+    echo -e "Atalho atual para fechar janela: $current_shortcut"
+    
+    # Definir Alt+Q como atalho para fechar janela
+    gsettings set org.gnome.desktop.wm.keybindings close "['<Alt>q']"
+    
+    # Verificar se foi aplicado
+    new_shortcut=$(gsettings get org.gnome.desktop.wm.keybindings close)
+    echo -e "Novo atalho configurado: $new_shortcut"
+    
+    echo -e "\nAtalho Alt+Q configurado com sucesso!"
+    echo -e "Agora você pode usar Alt+Q para fechar janelas ativas"
 fi
 
 # Instalação do Docker
